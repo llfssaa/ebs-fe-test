@@ -1,9 +1,16 @@
+.wrapper {
+  margin: 30px;
+  display: flex;
+  justify-content:space-around;
+}
 .list {
   border: 1px solid #ccc;
 }
 .list tr {
+  padding: 5px;
   border: 1px solid #ccc;
 }
 .list td {
+  padding: 5px;
   border: 1px solid #ccc;
 }

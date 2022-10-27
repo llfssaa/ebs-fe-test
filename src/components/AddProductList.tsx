@@ -1,8 +1,8 @@
 import React from 'react';
-import { Product } from './types/types';
+import { CartProduct } from './types/types'
 
 interface Props {
-  cartProducts: Product[];
+  cartProducts: CartProduct[];
 }
 
 const AddProductList = (props: Props) => {
@@ -13,31 +13,33 @@ const AddProductList = (props: Props) => {
           <tr>
             <td>Category</td>
             <td>Name</td>
+            <td>Quantity</td>
             <td>Price</td>
             <td>Actions</td>
           </tr>
         </thead>
         <tbody>
-          {/*{
-          products.map((el, i)=>(
+          {
+          props.cartProducts.map((el, i)=>(
             <tr key={el.category.id+el.name}>
               <td>{el.category.name}</td>
               <td>{el.name}</td>
-              <td>{el.price}</td>
+              <td>{el.quantity}</td>
+              <td>${(el.price * el.quantity).toFixed(2)}</td>
               <td>
                 <button
                   onClick={()=> {
-                    setCount(count=>count-1)}}
-                  disabled={count===0}
+
+                  }}
                 > (-) </button>
                 Select
                 <button onClick={()=> {
-                  setCount(count=>count+1)
+
                 }}> (+) </button>
               </td>
             </tr>
           ))
-        }*/}
+        }
         </tbody>
       </table>
     </div>

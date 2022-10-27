@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import '../components/style/productList.css';
-import { Product } from './types/types';
+import React from 'react';
+import '../style/style.css';
+import { Product } from './types/types'
 interface Props {
   products: Product[];
   addProduct: (obj: Product) => void;
@@ -23,7 +23,7 @@ const ProductsList = (props: Props) => {
             <tr key={product.category.id + product.name}>
               <td>{product.category.name}</td>
               <td>{product.name}</td>
-              <td>{product.price}</td>
+              <td>${product.price}</td>
               <td>
                 <button
                   onClick={() => {

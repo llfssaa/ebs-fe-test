@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Product } from './components/types/types';
+import { CartProduct, Product } from './components/types/types'
 import ProductsList from './components/ProductList';
 import AddProductList from './components/AddProductList';
+import './style/style.css'
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [addProducts, setAddProducts] = useState<Product[]>([]);
+  const [addProducts, setAddProducts] = useState<CartProduct[]>([]);
 
   const addProduct = (product: Product): void => {
-    if (addProducts.includes(product)) {
+    if (addProducts.some((cartProduct)=> cartProduct.name === product.name)){
       setAddProducts(
         addProducts.map((el) => {
-          if (el.name === product.name) return { ...el, quantity: el.quantity ? el.quantity + 1 : 1 };
+          if (el.name === product.name) return { ...el, quantity: el.quantity + 1 };
           return el;
         }),
       );
@@ -43,7 +44,7 @@ function App() {
 
   }, [])*/
   return (
-    <div>
+    <div className='wrapper'>
       <ProductsList products={products} addProduct={addProduct} removeProduct={removeProduct} />
       <AddProductList cartProducts={addProducts} />
     </div>
