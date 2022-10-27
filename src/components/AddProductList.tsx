@@ -3,9 +3,9 @@ import { CartProduct } from './types/types';
 
 interface Props {
   cartProducts: CartProduct[];
-  removeProduct: (obj: CartProduct) => void
-  incrementProduct: (obj: CartProduct) => void
-  decrementProduct: (obj: CartProduct) => void
+  removeProduct: (obj: CartProduct) => void;
+  incrementProduct: (obj: CartProduct) => void;
+  decrementProduct: (obj: CartProduct) => void;
 }
 
 const AddProductList = (props: Props) => {
@@ -30,9 +30,7 @@ const AddProductList = (props: Props) => {
               <td>${(product.price * product.quantity).toFixed(2)}</td>
               <td>
                 <button onClick={() => props.decrementProduct(product)}> (-) </button>
-                <button
-                onClick={()=>props.removeProduct(product)}
-                >Remove</button>
+                <button onClick={() => props.removeProduct(product)}>Remove</button>
                 <button onClick={() => props.incrementProduct(product)}> (+) </button>
               </td>
             </tr>
