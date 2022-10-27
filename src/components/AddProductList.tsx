@@ -1,8 +1,11 @@
 import React from 'react';
-import { CartProduct } from './types/types'
+import { CartProduct } from './types/types';
 
 interface Props {
   cartProducts: CartProduct[];
+  removeProduct: (obj: CartProduct) => void
+  incrementProduct: (obj: CartProduct) => void
+  decrementProduct: (obj: CartProduct) => void
 }
 
 const AddProductList = (props: Props) => {
@@ -19,27 +22,21 @@ const AddProductList = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {
-          props.cartProducts.map((el, i)=>(
-            <tr key={el.category.id+el.name}>
-              <td>{el.category.name}</td>
-              <td>{el.name}</td>
-              <td>{el.quantity}</td>
-              <td>${(el.price * el.quantity).toFixed(2)}</td>
+          {props.cartProducts.map((product, i) => (
+            <tr key={product.category.id + product.name}>
+              <td>{product.category.name}</td>
+              <td>{product.name}</td>
+              <td>{product.quantity}</td>
+              <td>${(product.price * product.quantity).toFixed(2)}</td>
               <td>
+                <button onClick={() => props.decrementProduct(product)}> (-) </button>
                 <button
-                  onClick={()=> {
-
-                  }}
-                > (-) </button>
-                Select
-                <button onClick={()=> {
-
-                }}> (+) </button>
+                onClick={()=>props.removeProduct(product)}
+                >Remove</button>
+                <button onClick={() => props.incrementProduct(product)}> (+) </button>
               </td>
             </tr>
-          ))
-        }
+          ))}
         </tbody>
       </table>
     </div>

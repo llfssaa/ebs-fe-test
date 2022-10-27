@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/style.css';
-import { Product } from './types/types'
+import { Product } from './types/types';
 interface Props {
   products: Product[];
   addProduct: (obj: Product) => void;
@@ -19,7 +19,7 @@ const ProductsList = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {props.products.map((product, i) => (
+          {props.products.map((product) => (
             <tr key={product.category.id + product.name}>
               <td>{product.category.name}</td>
               <td>{product.name}</td>
@@ -30,17 +30,14 @@ const ProductsList = (props: Props) => {
                     props.removeProduct(product);
                   }}
                 >
-                  {' '}
-                  (-){' '}
+                  Delete
                 </button>
-                Select
                 <button
                   onClick={() => {
                     props.addProduct(product);
                   }}
                 >
-                  {' '}
-                  (+){' '}
+                  Add
                 </button>
               </td>
             </tr>

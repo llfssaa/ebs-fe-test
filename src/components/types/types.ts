@@ -3,7 +3,7 @@ export interface Product {
   category: Category;
   price: number;
 }
-export interface CartProduct extends Product{
+export interface CartProduct extends Product {
   quantity: number;
 }
 

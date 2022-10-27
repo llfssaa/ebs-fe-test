@@ -20,7 +20,28 @@ function App() {
     }
     setAddProducts([...addProducts, { ...product, quantity: 1 }]);
   };
-  const removeProduct = (product: Product): void => {};
+  const removeProduct = (product: Product): void => {
+    setAddProducts(addProducts.filter((cartProduct) => cartProduct.name !== product.name))
+
+  };
+  const incrementProduct = (product: CartProduct): void => {
+      setAddProducts(
+          addProducts.map((el) => {
+              if (el.name === product.name) return { ...el, quantity: el.quantity + 1 };
+              return el;
+          }),
+      );
+  }
+    const decrementProduct = (product: CartProduct): void => {
+        if (product.quantity>1){
+            setAddProducts(
+                addProducts.map((el) => {
+                    if (el.name === product.name) return { ...el, quantity: el.quantity - 1 };
+                    return el;
+                }),
+            );
+        }
+    }
 
   /*const [categories, setCategories] = useState<Category>()*/
   useEffect(() => {
@@ -44,9 +65,15 @@ function App() {
 
   }, [])*/
   return (
-    <div className='wrapper'>
-      <ProductsList products={products} addProduct={addProduct} removeProduct={removeProduct} />
-      <AddProductList cartProducts={addProducts} />
+    <div>
+        <div className="wrapper">
+            <ProductsList products={products} addProduct={addProduct} removeProduct={removeProduct} />
+            <AddProductList cartProducts={addProducts} removeProduct={removeProduct}
+                            incrementProduct={incrementProduct} decrementProduct={decrementProduct} />
+        </div>
+        <div>
+            <p>Total price: {}</p>
+        </div>
     </div>
   );
 }
