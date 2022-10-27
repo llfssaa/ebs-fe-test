@@ -8,8 +8,8 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProducts, setAddProducts] = useState<CartProduct[]>([]);
 
-  const totalPrice = ():string => {
-    if (!addProducts.length) return '0.00'
+  const totalPrice = (): string => {
+    if (!addProducts.length) return '0.00';
     return addProducts
       .map((product) => product.price * product.quantity)
       .reduce((a: number, b: number) => a + b)
@@ -17,7 +17,7 @@ function App() {
   };
 
   const addProduct = (product: Product): void => {
-    if (addProducts.some((cartProduct)=> cartProduct.name === product.name)){
+    if (addProducts.some((cartProduct) => cartProduct.name === product.name)) {
       setAddProducts(
         addProducts.map((el) => {
           if (el.name === product.name) return { ...el, quantity: el.quantity + 1 };
