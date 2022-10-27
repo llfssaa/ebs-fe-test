@@ -8,6 +8,16 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProducts, setAddProducts] = useState<CartProduct[]>([]);
 
+  const totalPrice = () => {
+      if (addProducts.length === 0){
+        return 0
+      }
+      return addProducts.map(el => {
+          return (el.price * el.quantity)})
+          .reduce((a:number,b:number)=> a+b).toFixed(2)
+  }
+
+
   const addProduct = (product: Product): void => {
     if (addProducts.some((cartProduct)=> cartProduct.name === product.name)){
       setAddProducts(
@@ -43,6 +53,8 @@ function App() {
         }
     }
 
+
+
   /*const [categories, setCategories] = useState<Category>()*/
   useEffect(() => {
     fetch('http://localhost:3001/api/products/')
@@ -72,7 +84,7 @@ function App() {
                             incrementProduct={incrementProduct} decrementProduct={decrementProduct} />
         </div>
         <div>
-            <p>Total price: {}</p>
+            <p>Total price: {totalPrice()}</p>
         </div>
     </div>
   );
