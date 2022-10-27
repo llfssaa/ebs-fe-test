@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Product } from './components/types/types';
 import ProductsList from './components/ProductList';
-import AddProductList from './components/ AddProductList';
+import AddProductList from './components/AddProductList';
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProducts, setAddProducts] = useState<Product[]>([]);
 
   const addProduct = (product: Product): void => {
-      if (addProducts.includes(product)){
-          setAddProducts(addProducts.map((el)=> {
-              if (el.name === product.name) return ({...el, quantity: el.quantity ? el.quantity + 1 : 1})
-              return el
-          }))
-          return;
-      }
-      setAddProducts([...addProducts, { ...product, quantity: 1 }])
+    if (addProducts.includes(product)) {
+      setAddProducts(
+        addProducts.map((el) => {
+          if (el.name === product.name) return { ...el, quantity: el.quantity ? el.quantity + 1 : 1 };
+          return el;
+        }),
+      );
+      return;
+    }
+    setAddProducts([...addProducts, { ...product, quantity: 1 }]);
   };
   const removeProduct = (product: Product): void => {};
 
