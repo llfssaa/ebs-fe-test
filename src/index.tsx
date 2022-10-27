@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import ProductsList from './components/ProductsList';
+import App from './App'
 
 render(
   <div>
-    <ProductsList />
+    <App />
   </div>,
 
   document.getElementById('root'),

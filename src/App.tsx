@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-
-interface Product {
-  name: string;
-  category: Category;
-  price: number;
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
+import { Product } from './components/types/types';
+import ProductsList from './components/ProductList';
+import AddProductList from './components/ AddProductList';
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
-  /*const [categories, setCategories] = useState<Category>()*/
-  const [count, setCount] = useState(0);
+  const [addProducts, setAddProducts] = useState<Product[]>([]);
 
+  const addProduct = (product: Product): void => {
+      if (addProducts.includes(product)){
+          setAddProducts(addProducts.map((el)=> {
+              if (el.name === product.name) return ({...el, quantity: el.quantity ? el.quantity + 1 : 1})
+              return el
+          }))
+          return;
+      }
+      setAddProducts([...addProducts, { ...product, quantity: 1 }])
+  };
+  const removeProduct = (product: Product): void => {};
+
+  /*const [categories, setCategories] = useState<Category>()*/
   useEffect(() => {
     fetch('http://localhost:3001/api/products/')
       .then((response) => {
@@ -36,10 +40,10 @@ function App() {
       });
 
   }, [])*/
-
   return (
     <div>
-
+      <ProductsList products={products} addProduct={addProduct} removeProduct={removeProduct} />
+      <AddProductList cartProducts={addProducts} />
     </div>
   );
 }
