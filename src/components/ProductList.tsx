@@ -1,10 +1,11 @@
 import React from 'react';
 import '../style/style.css';
-import { Product } from './types/types';
+import { Product, SortByFieldType, SortType } from './types/types'
 interface Props {
   products: Product[];
   addProduct: (obj: Product) => void;
   removeProduct: (obj: Product) => void;
+  sortProducts: (sortType: SortType, sortByField: SortByFieldType) => void;
 }
 const ProductsList = (props: Props) => {
   return (
@@ -12,9 +13,15 @@ const ProductsList = (props: Props) => {
       <table className="list">
         <thead>
           <tr>
-            <td>Category</td>
+            <td>Category
+            <button onClick={() => props.sortProducts('asc', 'category')}>▲</button>
+            <button onClick={() => props.sortProducts('desc', 'category')}>▼</button>
+            </td>
             <td>Name</td>
-            <td>Price</td>
+            <td>Price
+              <button onClick={() => props.sortProducts('asc', 'price')}>▲</button>
+              <button onClick={() => props.sortProducts('desc', 'price')}>▼</button>
+            </td>
             <td>Actions</td>
           </tr>
         </thead>

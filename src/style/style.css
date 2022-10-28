@@ -17,3 +17,9 @@
 .list td button {
   margin: 3px;
 }
+.wrapper div:last-child {
+  display: flex;
+  align-self: flex-end;
+  font-size: 30px;
+  margin: -30px;
+}

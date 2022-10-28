@@ -1,11 +1,12 @@
 import React from 'react';
-import { CartProduct } from './types/types';
+import { CartProduct, SortByFieldType, SortType } from './types/types'
 
 interface Props {
   cartProducts: CartProduct[];
   removeProduct: (obj: CartProduct) => void;
   incrementProduct: (obj: CartProduct) => void;
   decrementProduct: (obj: CartProduct) => void;
+  sortAddProducts: (sortType: SortType, sortByField: SortByFieldType) => void;
 }
 
 const AddProductList = (props: Props) => {
@@ -14,10 +15,16 @@ const AddProductList = (props: Props) => {
       <table className="list">
         <thead>
           <tr>
-            <td>Category</td>
+            <td>Category
+              <button onClick={() => props.sortAddProducts('asc', 'category')}>▲</button>
+              <button onClick={() => props.sortAddProducts('desc', 'category')}>▼</button>
+            </td>
             <td>Name</td>
             <td>Quantity</td>
-            <td>Price</td>
+            <td>Price
+              <button onClick={() => props.sortAddProducts('asc', 'price')}>▲</button>
+              <button onClick={() => props.sortAddProducts('desc', 'price')}>▼</button>
+            </td>
             <td>Actions</td>
           </tr>
         </thead>
