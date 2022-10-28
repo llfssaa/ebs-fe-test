@@ -8,6 +8,7 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProducts, setAddProducts] = useState<CartProduct[]>([]);
 
+
   const sortFunction = (
     products: Product[] | CartProduct[],
     sortByField: SortByFieldType,
@@ -54,14 +55,13 @@ function App() {
       .toFixed(2);
   };
 
+  const isExistingInCart = (product: Product): boolean => {
+    return addProducts.some((cartProduct) => cartProduct.name === product.name)
+  }
+
   const addProduct = (product: Product): void => {
     if (addProducts.some((cartProduct) => cartProduct.name === product.name)) {
-      setAddProducts(
-        addProducts.map((el) => {
-          if (el.name === product.name) return { ...el, quantity: el.quantity + 1 };
-          return el;
-        }),
-      );
+      incrementProduct(product as Product)
       return;
     }
     setAddProducts([...addProducts, { ...product, quantity: 1 }]);
@@ -69,7 +69,7 @@ function App() {
   const removeProduct = (product: Product): void => {
     setAddProducts(addProducts.filter((cartProduct) => cartProduct.name !== product.name));
   };
-  const incrementProduct = (product: CartProduct): void => {
+  const incrementProduct = (product: CartProduct | Product): void => {
     setAddProducts(
       addProducts.map((el) => {
         if (el.name === product.name) return { ...el, quantity: el.quantity + 1 };
@@ -98,6 +98,7 @@ function App() {
         setProducts(data);
       });
   }, []);
+
   /*  useEffect(() => {
     fetch('http://localhost:3001/api/categories/')
       .then((response) => {
@@ -107,7 +108,6 @@ function App() {
         setCategories(data)
         console.log(data)
       });
-
   }, [])*/
   return (
     <div className="wrapper">
@@ -116,6 +116,7 @@ function App() {
         addProduct={addProduct}
         removeProduct={removeProduct}
         sortProducts={sortProducts}
+        isExistingInCart={isExistingInCart}
       />
       <AddProductList
         cartProducts={addProducts}

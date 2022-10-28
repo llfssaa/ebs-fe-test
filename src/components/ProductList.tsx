@@ -6,6 +6,7 @@ interface Props {
   addProduct: (obj: Product) => void;
   removeProduct: (obj: Product) => void;
   sortProducts: (sortType: SortType, sortByField: SortByFieldType) => void;
+  isExistingInCart: (product: Product) => boolean
 }
 const ProductsList = (props: Props) => {
   return (
@@ -35,6 +36,7 @@ const ProductsList = (props: Props) => {
               <td>${product.price}</td>
               <td>
                 <button
+                  disabled={!props.isExistingInCart(product)}
                   onClick={() => {
                     props.removeProduct(product);
                   }}
