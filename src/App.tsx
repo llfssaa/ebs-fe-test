@@ -8,7 +8,6 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProducts, setAddProducts] = useState<CartProduct[]>([]);
 
-
   const sortFunction = (
     products: Product[] | CartProduct[],
     sortByField: SortByFieldType,
@@ -56,12 +55,12 @@ function App() {
   };
 
   const isExistingInCart = (product: Product): boolean => {
-    return addProducts.some((cartProduct) => cartProduct.name === product.name)
-  }
+    return addProducts.some((cartProduct) => cartProduct.name === product.name);
+  };
 
   const addProduct = (product: Product): void => {
     if (addProducts.some((cartProduct) => cartProduct.name === product.name)) {
-      incrementProduct(product as Product)
+      incrementProduct(product as Product);
       return;
     }
     setAddProducts([...addProducts, { ...product, quantity: 1 }]);

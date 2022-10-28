@@ -6,7 +6,7 @@ interface Props {
   addProduct: (obj: Product) => void;
   removeProduct: (obj: Product) => void;
   sortProducts: (sortType: SortType, sortByField: SortByFieldType) => void;
-  isExistingInCart: (product: Product) => boolean
+  isExistingInCart: (product: Product) => boolean;
 }
 const ProductsList = (props: Props) => {
   return (
