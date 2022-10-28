@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartProduct, SortByFieldType, SortType } from './types/types'
+import { CartProduct, SortByFieldType, SortType } from './types/types';
 
 interface Props {
   cartProducts: CartProduct[];
@@ -15,13 +15,15 @@ const AddProductList = (props: Props) => {
       <table className="list">
         <thead>
           <tr>
-            <td>Category
+            <td>
+              Category
               <button onClick={() => props.sortAddProducts('asc', 'category')}>▲</button>
               <button onClick={() => props.sortAddProducts('desc', 'category')}>▼</button>
             </td>
             <td>Name</td>
             <td>Quantity</td>
-            <td>Price
+            <td>
+              Price
               <button onClick={() => props.sortAddProducts('asc', 'price')}>▲</button>
               <button onClick={() => props.sortAddProducts('desc', 'price')}>▼</button>
             </td>

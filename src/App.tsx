@@ -13,12 +13,12 @@ function App() {
     sortByField: SortByFieldType,
     sortType: SortType,
   ): Product[] | CartProduct[] => {
-    const sortedProducts = [...products] ;
+    const sortedProducts = [...products];
 
     if (sortType === 'asc') {
       if (sortByField === 'category') {
-        sortedProducts.sort((a,b) => {
-          return ('' + a.category.name).localeCompare(b.category.name)
+        sortedProducts.sort((a, b) => {
+          return ('' + a.category.name).localeCompare(b.category.name);
         });
       } else {
         sortedProducts.sort((a, b) => {
@@ -27,8 +27,8 @@ function App() {
       }
     } else {
       if (sortByField === 'category') {
-        sortedProducts.sort((a,b) => {
-          return ('' + b.category.name).localeCompare(a.category.name)
+        sortedProducts.sort((a, b) => {
+          return ('' + b.category.name).localeCompare(a.category.name);
         });
       }
       sortedProducts.sort((a, b) => {
@@ -45,8 +45,6 @@ function App() {
   const sortAddProducts = (sortType: SortType, sortByField: SortByFieldType) => {
     setAddProducts(sortFunction(addProducts, sortByField, sortType) as CartProduct[]);
   };
-
-
 
   const totalPrice = (): string => {
     if (!addProducts.length) return '0.00';
@@ -112,24 +110,24 @@ function App() {
 
   }, [])*/
   return (
-      <div className="wrapper">
-        <ProductsList
-          products={products}
-          addProduct={addProduct}
-          removeProduct={removeProduct}
-          sortProducts={sortProducts}
-        />
-        <AddProductList
-          cartProducts={addProducts}
-          removeProduct={removeProduct}
-          incrementProduct={incrementProduct}
-          decrementProduct={decrementProduct}
-          sortAddProducts={sortAddProducts}
-        />
-        <div>
-          <p>Total price: {totalPrice()}</p>
-        </div>
+    <div className="wrapper">
+      <ProductsList
+        products={products}
+        addProduct={addProduct}
+        removeProduct={removeProduct}
+        sortProducts={sortProducts}
+      />
+      <AddProductList
+        cartProducts={addProducts}
+        removeProduct={removeProduct}
+        incrementProduct={incrementProduct}
+        decrementProduct={decrementProduct}
+        sortAddProducts={sortAddProducts}
+      />
+      <div>
+        <p>Total price: {totalPrice()}</p>
       </div>
+    </div>
   );
 }
 
